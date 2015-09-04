@@ -1,9 +1,15 @@
-CFLAGS = -Wall -Wextra -pedantic -std=c11 -march=native -s -Ofast
+CFLAGS = -std=c11 -march=native -s -Ofast -Wall -Wextra -pedantic \
+				 -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700
+
 CC = gcc
+
+ifeq ($(CC), gcc)
+	CFLAGS += -flto
+endif
 
 .PHONY: clean all
 
-all: dir cat wc
+all: dir cat wc rand
 	bin/wc -c bin/*
 
 dir:
@@ -14,6 +20,9 @@ cat:
 
 wc:
 	$(CC) wc.c -o bin/wc $(CFLAGS)
+
+rand:
+	$(CC) rand.c -o bin/rand $(CFLAGS)
 
 clean:
 	rm -rf bin

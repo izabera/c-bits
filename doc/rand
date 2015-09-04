@@ -1,0 +1,1 @@
+outputs 4k * argv[1] pseudorandom bytes, using argv[2] as a seed
