@@ -40,6 +40,7 @@ void add_word(const char *word) {
 }
 
 bool issimilar(const char *a, const char *b) {
+  if (strlen(a) < strlen(b) - 1 || strlen(a) > strlen(b) + 1) return false;
   while (*a && *b && *a == *b) a++, b++;  // skip common part
   if (*a) {
     if (*b) {
@@ -73,7 +74,7 @@ int main() {
   }
   fclose(dict);
 
-  char *delim = " ,;.:\"'-?!", *word;
+  char *delim = "\\1234567890'|!\"£$%&/()=?^[]{}<>,;.:-_", *word;
   while ((read = getline(&line, &len, stdin)) != -1) {
     if (read == 1) continue;
     line[read-1] = '\0';
