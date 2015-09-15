@@ -9,7 +9,7 @@ endif
 
 .PHONY: clean all
 
-all: dir cat wc rand
+all: dir cat wc rand xor
 	bin/wc -c bin/*
 
 dir:
@@ -23,6 +23,9 @@ wc:
 
 rand:
 	$(CC) rand.c -o bin/rand $(CFLAGS)
+
+xor:
+	$(CC) xor.c -o bin/xor $(CFLAGS)
 
 clean:
 	rm -rf bin
