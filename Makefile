@@ -7,9 +7,9 @@ ifeq ($(CC), gcc)
 	CFLAGS += -flto
 endif
 
-.PHONY: clean all
+.PHONY: clean all cake
 
-all: dir cat wc rand xor
+all: dir cat wc rand xor cake
 	bin/wc -c bin/*
 
 dir:
@@ -26,6 +26,14 @@ rand:
 
 xor:
 	$(CC) xor.c -o bin/xor $(CFLAGS)
+
+stocks:
+	$(CC) cake/stocks.c -o bin/stocks $(CFLAGS)
+
+product:
+	$(CC) cake/product.c -o bin/proudct $(CFLAGS)
+
+cake: stocks product
 
 clean:
 	rm -rf bin
